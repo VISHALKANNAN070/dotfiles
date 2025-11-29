@@ -1,0 +1,28 @@
+# Background/Main Color (Background of the lock screen itself)
+color=1e1e2e
+
+# Indicator Ring Settings
+indicator-thickness=32
+indicator-radius=200
+
+# Colors when IDLE
+# The outer ring color
+ring-color=cdd6f4
+# The color of the inside of the indicator circle
+inside-color=1e1e2e
+# The color of the text displayed (e.g., 'Typing...')
+text-color=cdd6f4
+
+# Colors when VERIFYING/CORRECT
+# The outer ring color when typing/correct
+ring-ver-color=cdd6f4
+# The color of the inside of the indicator circle when typing/correct
+inside-ver-color=cdd6f4
+
+# Colors when WRONG/FAILURE
+# The outer ring color when password failed
+ring-wrong-color=990000
+# The color of the inside of the indicator circle when password failed
+inside-wrong-color=ffffff
+# Highlight color for pressed keys
+key-hl-color=1e1e2e

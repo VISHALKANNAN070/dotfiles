@@ -1,0 +1,20 @@
+# Minimal Mako Notification Style
+
+background-color=#232427
+text-color=#d8d8d8
+
+# No borders
+border-size=0
+
+# Padding inside notifications
+padding=10
+
+
+# Time before auto-close (3 seconds)
+default-timeout=3000
+
+# Font
+font=JetBrainsMono Nerd Font 12
+
+# No icons unless needed
+max-icon-size=32

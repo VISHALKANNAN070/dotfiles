@@ -1,0 +1,3 @@
+{
+    "autofmtcommand": "clang-format -i"
+}

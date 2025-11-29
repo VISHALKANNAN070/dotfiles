@@ -1,0 +1,41 @@
+/* Minimal Waybar */
+
+* {
+    font-family: JetBrainsMono Nerd Font;
+    font-size: 13px;
+    margin: 0;
+    padding: 0;
+    border: none;
+}
+
+/* Bar background */
+window#waybar {
+    background: #232427;
+    color: #d8d8d8;
+}
+
+/* Workspaces */
+#workspaces button {
+    padding: 0 10px;
+    color: #909193;
+}
+
+#workspaces button.focused {
+    color: #ffffff;
+    background: #3a3c3f;
+}
+
+#workspaces button:hover {
+    background: #3a3c3f;
+}
+
+/* Modules */
+#clock, #network, #pulseaudio, #battery, #backlight {
+    padding: 0 12px;
+}
+
+/* Very subtle hover */
+#clock:hover, #network:hover, #pulseaudio:hover,
+#battery:hover, #backlight:hover {
+    background: #3a3c3f;
+}
