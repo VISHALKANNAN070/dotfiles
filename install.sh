@@ -1,4 +1,58 @@
 #!/bin/bash
+echo "==> Checking for yay..."
+
+if ! command -v yay &> /dev/null; then
+    echo "==> yay not found. Installing..."
+
+    sudo pacman -S --needed --noconfirm base-devel git
+
+    cd /tmp
+    git clone https://aur.archlinux.org/yay.git
+    cd yay
+    makepkg -si --noconfirm
+
+    echo "==> yay installed."
+else
+    echo "==> yay already installed."
+fi
+
+echo "==> Installing required packages..."
+
+# Packages from official Arch repos
+PACMAN_PACKAGES=(
+    zsh
+    waybar
+    fuzzel
+    mako
+    swaylock
+    alacritty
+    micro
+    fastfetch
+    wl-clipboard
+    pamixer
+    playerctl
+    jq
+    pipewire
+    pipewire-alsa
+    pipewire-pulse
+    pipewire-jack
+    wireplumber
+)
+
+# Install PACMAN packages
+sudo pacman -S --needed --noconfirm "${PACMAN_PACKAGES[@]}"
+
+echo "==> Installing AUR packages (using yay)..."
+
+AUR_PACKAGES=(
+    niri
+    cliphist
+)
+
+yay -S --needed --noconfirm "${AUR_PACKAGES[@]}"
+
+echo "==> Package installation complete."
+
 
 DOTFILES="$HOME/dotfiles"
 

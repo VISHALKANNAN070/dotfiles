@@ -1,0 +1,46 @@
+#!/bin/sh
+
+# Get current volume as number
+get_vol() {
+    pactl get-sink-volume @DEFAULT_SINK@ \
+        | grep -o "[0-9]*%" \
+        | head -1 \
+        | tr -d '%'
+}
+
+# Apply volume change safely (0–100)
+safe_set() {
+    newvol=$1
+    [ "$newvol" -lt 0 ] && newvol=0
+    [ "$newvol" -gt 100 ] && newvol=100
+    pactl set-sink-volume @DEFAULT_SINK@ "${newvol}%"
+}
+
+case "$1" in
+    up)
+        cur=$(get_vol)
+        new=$((cur + 5))
+        safe_set "$new"
+        ;;
+    down)
+        cur=$(get_vol)
+        new=$((cur - 5))
+        safe_set "$new"
+        ;;
+    mute)
+        pactl set-sink-mute @DEFAULT_SINK@ toggle
+        ;;
+    *)
+        exit 1
+        ;;
+esac
+
+# Notify
+muted=$(pactl get-sink-mute @DEFAULT_SINK@ | awk '{print $2}')
+
+if [ "$muted" = "yes" ]; then
+    notify-send -t 2000 -h int:value:"0" "Muted"
+else
+    vol=$(get_vol)
+    notify-send -t 2000 -h int:value:"$vol" "Volume: ${vol}%"
+fi

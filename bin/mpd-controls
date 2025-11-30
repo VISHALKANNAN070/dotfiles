@@ -1,0 +1,27 @@
+#!/bin/bash
+
+choice=$(printf "Play/Pause\nNext\nPrevious\nStop\nShuffle\nClear Playlist" | fuzzel --dmenu)
+
+case "$choice" in
+    "Play/Pause")
+        mpc toggle
+        ;;
+    "Next")
+        mpc next
+        ;;
+    "Previous")
+        mpc prev
+        ;;
+    "Stop")
+        mpc stop
+        ;;
+    "Shuffle")
+        mpc shuffle
+        ;;
+    "Clear Playlist")
+        mpc clear
+        ;;
+    *)
+        exit 0
+        ;;
+esac
