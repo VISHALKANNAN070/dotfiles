@@ -45,4 +45,4 @@ notify-send \
     -a "ghost-hud" \
     -h string:x-canonical-private-synchronous:ghost-hud \
     "$TIME" \
-    "$WIFI | $BAT | $MUSIC"
+    "$WIFI | $BAT"$'\n'"$MUSIC"

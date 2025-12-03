@@ -17,99 +17,80 @@
         }
     },
     "modules": [
-        {
-            "type": "title",
-            "format": "                             {user-name-colored}{at-symbol-colored}{host-name-colored}"
-        },
+       
         "break",
         {
             "type": "custom",
-            "format": "┌{$1} {#1}System Information{#} {$1}┐"
+            
         },
         "break",
         {
             "key": "OS           ",
-            "keyColor": "red",
+            "keyColor": "#808080",
             "type": "os"
         },
         {
             "key": "Machine      ",
-            "keyColor": "green",
+            "keyColor": "#808080",
             "type": "host"
         },
         {
             "key": "Kernel       ",
-            "keyColor": "magenta",
+            "keyColor": "#808080",
             "type": "kernel"
         },
         {
             "key": "Uptime       ",
-            "keyColor": "red",
+            "keyColor": "#808080",
             "type": "uptime"
         },
         {
             "key": "Resolution   ",
-            "keyColor": "yellow",
+            "keyColor": "#808080",
             "type": "display",
             "compactType": "original-with-refresh-rate"
         },
         {
             "key": "WM           ",
-            "keyColor": "blue",
+            "keyColor": "#808080",
             "type": "wm"
         },
         {
             "key": "DE           ",
-            "keyColor": "green",
+            "keyColor": "#808080",
             "type": "de"
         },
         {
             "key": "Shell        ",
-            "keyColor": "cyan",
+            "keyColor": "#808080",
             "type": "shell"
         },
         {
             "key": "Terminal     ",
-            "keyColor": "red",
+            "keyColor": "#808080",
             "type": "terminal"
         },
         {
             "key": "CPU          ",
-            "keyColor": "yellow",
+            "keyColor": "#808080",
             "type": "cpu"
         },
         {
             "key": "GPU          ",
-            "keyColor": "blue",
+            "keyColor": "#808080",
             "type": "gpu"
         },
         {
             "key": "Memory       ",
-            "keyColor": "magenta",
+            "keyColor": "#808080",
             "type": "memory"
-        },
-        {
-            "key": "Local IP     ",
-            "keyColor": "red",
-            "type": "localip",
-            "compact": true
-        },
-        {
-            "key": "Public IP    ",
-            "keyColor": "cyan",
-            "type": "publicip",
-            "timeout": 1000
         },
         "break",
         {
             "type": "custom",
-            "format": "└{$1}────────────────────{$1}┘"
+            
         },
         "break",
-        {
-            "type": "colors",
-            "paddingLeft": 34,
-            "symbol": "circle"
-        }
+        
     ]
 }

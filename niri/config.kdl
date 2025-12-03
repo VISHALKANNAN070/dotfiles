@@ -1,12 +1,10 @@
-//title bar
-prefer-no-csd
-
-
+// --- Input & Output ---
 input {
     keyboard {
         repeat-rate 35
         repeat-delay 200
         xkb {
+            // layout "us" 
         }
         numlock
     }
@@ -18,19 +16,22 @@ input {
 
     mouse {}
     trackpoint {}
-    focus-follows-mouse
+    focus-follows-mouse max-scroll-amount="0%"
 }
 
 // output "eDP-1" {
-//     mode "1920x1080@120.030"
-//     scale 2
-//     position x=1280 y=0
+//      mode "1920x1080@120.030"
+//      scale 2
+//      position x=1280 y=0
 // }
 
+// --- Layout & Look ---
+prefer-no-csd
 
 layout {
-    gaps 20
+    gaps 10
     center-focused-column "never"
+    
     preset-column-widths {
         proportion 0.33333
         proportion 0.5
@@ -41,7 +42,7 @@ layout {
 
     focus-ring {
         width 2
-        active-color "#81a1c1"
+        active-color "#dedede"
         inactive-color "#505050"
     }
 
@@ -57,86 +58,134 @@ layout {
     struts {}
 }
 
-spawn-sh-at-startup "waybar"
-spawn-sh-at-startup "mako"
-spawn-sh-at-startup "fuzzel --daemonize"
-spawn-at-startup "swaybg" "-m" "fill" "-i" "/home/vishal/Downloads/minimal_wall.png"
-spawn-sh-at-startup "~/.local/bin/cliphist-watch &"
+// --- Window Rules (The Logic You Asked For) ---
 
-hotkey-overlay {
-    skip-at-startup
-}
+// 1. General Rule: Everything opens maximized (fullscreen-ish) by default
 
 
-screenshot-path "~/Pictures/Screenshots/Screenshot from %Y-%m-%d %H-%M-%S.png"
+// 2. Exception: Alacritty opens floating and NOT maximized
 
-animations {
-off
-}
-
+// 3. Keep Firefox PiP floating
 window-rule {
     match app-id=r#"firefox$"# title="^Picture-in-Picture$"
     open-floating true
 }
 
- window-rule {
-     geometry-corner-radius 8
-     clip-to-geometry true
- }
+// 4. Geometry settings
+window-rule {
+    geometry-corner-radius 0
+    clip-to-geometry true
+}
+
+// --- Startup ---
+
+spawn-sh-at-startup "mako"
+spawn-sh-at-startup "fuzzel --daemonize"
+spawn-at-startup "swaybg" "-m" "fill" "-i" "/home/vishal/Downloads/wallhaven-rqqygw.jpg"
+spawn-sh-at-startup "~/.local/bin/cliphist-watch &"
+spawn-at-startup "~/.local/bin/ghost-watcher.sh"
+
+// --- Environment ---
 
 environment {
     XCURSOR_SIZE "24"
 }
 
+screenshot-path "~/Pictures/Screenshots/Screenshot from %Y-%m-%d %H-%M-%S.png"
+
+animations {
+    off
+}
+
+// --- Binds ---
+
 binds {
-    F1 { spawn-sh "pactl set-sink-mute @DEFAULT_SINK@ toggle"; }
-    F2 { spawn-sh "pactl set-sink-volume @DEFAULT_SINK@ -5%"; } 
-    F3 { spawn-sh "~/.local/bin/volume-up-safe"; }
-    F4 { spawn "brightnessctl" "--class=backlight" "set" "5%-"; }
-    F5 { spawn "brightnessctl" "--class=backlight" "set" "+5%"; }
+    // Audio & Brightness
+    F1 { spawn-sh "~/.local/bin/volume-osd.sh mute"; }
+    F2 { spawn-sh "~/.local/bin/volume-osd.sh down"; } 
+    F3 { spawn-sh "~/.local/bin/volume-osd.sh up"; }
+    F4 { spawn-sh " ~/.local/bin/brightness-osd.sh down"; }
+    F5 { spawn-sh " ~/.local/bin/brightness-osd.sh up"; }
+    Ctrl+backslash {spawn-sh "~/.local/bin/audioswitch";}
 
+    // Launchers
     Mod+D { spawn "fuzzel"; }
-    Mod+T { spawn "alacritty"; }
+    Mod+Return { spawn "alacritty"; }
+    Super+Space { spawn "~/.local/bin/ghost-hud.sh"; }
     Alt+F4 {spawn-sh "~/.local/bin/powermenu";}
-    Mod+Q         { close-window; }
-    Mod+Shift+E   { quit; }
-    
-    Mod+O repeat=false { toggle-overview; }
-    
-    Mod+1 { focus-workspace "1"; }
-    Mod+2 { focus-workspace "2"; }
-    Mod+3 { focus-workspace "3"; }
-    Mod+4 { focus-workspace "4"; }
+    Mod+V { spawn-sh "~/.local/bin/clipmenu"; }
+	Mod+C {spawn-sh "~/.local/bin/mpd-controls";}
 
+    // Window Management
+    Mod+Q          { close-window; }
+    Mod+Shift+E    { quit; }
+    Mod+O repeat=false { toggle-overview; }
+
+    // Floating Controls (NEW)
+    // Toggle current window between floating and tiled
+    Mod+Shift+Space { toggle-window-floating; }
+    // Switch focus between the floating layer and tiling layer
+    Mod+Tab { switch-focus-between-floating-and-tiling; }
+
+    // Focus
     Mod+Left  { focus-column-left; }
     Mod+Right { focus-column-right; }
-    Mod+Up    { focus-window-up; }
     Mod+Down  { focus-window-down; }
+    Mod+Up    { focus-window-up; }
+    Mod+H     { focus-column-left; }
+    Mod+J     { focus-window-down; }
+    Mod+K     { focus-window-up; }
+    Mod+L     { focus-column-right; }
+    
+    // Workspaces
+    Mod+1 { focus-workspace 1; }
+    Mod+2 { focus-workspace 2; }
+    Mod+3 { focus-workspace 3; }
+    Mod+4 { focus-workspace 4; }
+    Mod+U { focus-workspace-up; }
+    Mod+I { focus-workspace-down; }
 
-    Mod+Ctrl+Left  { move-column-left; }
-    Mod+Ctrl+Down  { move-window-down; }
-    Mod+Ctrl+Up    { move-window-up; }
-    Mod+Ctrl+Right { move-column-right; }
-
-    Mod+Shift+1 { move-column-to-workspace 1; }
-    Mod+Shift+2 { move-column-to-workspace 2; }
-    Mod+Shift+3 { move-column-to-workspace 3; }
-    Mod+Shift+4 { move-column-to-workspace 4; }
-    Mod+Shift+5 { move-column-to-workspace 5; }
-    Mod+Shift+6 { move-column-to-workspace 6; }
-    Mod+Shift+7 { move-column-to-workspace 7; }
-    Mod+Shift+8 { move-column-to-workspace 8; }
-    Mod+Shift+9 { move-column-to-workspace 9; }
-
+    // Moving Windows
+    Mod+Ctrl+down { move-column-to-workspace-down; }
+    Mod+Ctrl+up   { move-column-to-workspace-up; }
+    Mod+Ctrl+H     { move-column-left; }
+    Mod+Ctrl+J     { move-window-down; }
+    Mod+Ctrl+K     { move-window-up; }
+    Mod+Ctrl+L     { move-column-right; }
+    
     Mod+Shift+Left  { move-column-left; }
     Mod+Shift+Right { move-column-right; }
     Mod+Shift+Up    { move-window-up; }
     Mod+Shift+Down  { move-window-down; }
 
-    Mod+F       { maximize-column; }
-    Mod+Shift+F { fullscreen-window; }
-    Mod+V { spawn-sh "~/.local/bin/clipmenu"; }
-    Ctrl+backslash {spawn-sh "~/.local/bin/audioswitch";}
+    // Move to Workspace
+    Mod+Shift+1 { move-column-to-workspace 1; }
+    Mod+Shift+2 { move-column-to-workspace 2; }
+    Mod+Shift+3 { move-column-to-workspace 3; }
+    Mod+Shift+4 { move-column-to-workspace 4; }
 
+    // Sizing
+    Mod+Minus { set-window-width "-10%"; }
+    Mod+Equal { set-window-width "+10%"; }
+    Mod+Shift+Minus { set-window-height "-10%"; }
+    Mod+Shift+Equal { set-window-height "+10%"; }    
+
+
+
+    // Sizing
+
+	Mod+F          { maximize-column; }
+    Mod+Shift+F    { fullscreen-window; }
+    Mod+R          { switch-preset-column-width; }
+    // Screenshots
     Print { screenshot; }
+    
+    // Mouse Binds (Crucial for Resizing Floating Windows)
+    Mod+WheelScrollDown      cooldown-ms=150 { focus-workspace-down; }
+    Mod+WheelScrollUp        cooldown-ms=150 { focus-workspace-up; }
+    Mod+Ctrl+WheelScrollDown cooldown-ms=150 { move-column-to-workspace-down; }
+    Mod+Ctrl+WheelScrollUp   cooldown-ms=150 { move-column-to-workspace-up; }
+    
+    Mod+W { toggle-column-tabbed-display; }
+
 }
