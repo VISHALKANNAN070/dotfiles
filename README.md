@@ -1,83 +1,87 @@
-#📁 Directory Structure
+# 🔧 Dotfiles
 
-alacritty/         # alacritty.toml + dank-theme.toml  
-bin/               # custom scripts (should go into ~/.local/bin)
-fastfetch/         # config.jsonc  
-fuzzel/            # fuzzel.ini
-mako/              # mako.config
-mpd/               # MPD config notes
-niri/              # config.kdl
-swaylock/          # config
-.zshrc             # Zsh configuration
+## 📂 Directory Structure
 
+```text
+├── alacritty/       # Terminal configuration
+├── bin/             # Custom scripts (installs to ~/.local/bin)
+├── fastfetch/       # System fetch tool config
+├── fuzzel/          # App launcher config
+├── mako/            # Notification daemon config
+├── mpd/             # Music Player Daemon config
+├── niri/            # Window Manager (Niri) config
+├── swaylock/        # Screen locker config
+└── .zshrc           # Zsh shell configuration
 
-##🚀 Installation
-###1. Clone the repository
-`git clone https://github.com/VISHALKANNAN070/dotfiles.git ~/dotfiles
-cd ~/dotfiles`
+🚀 Installation
+1. Clone the Repository
+Bash
 
-###2. Install the configs
-Alacritty
+git clone [https://github.com/VISHALKANNAN070/dotfiles.git](https://github.com/VISHALKANNAN070/dotfiles.git) ~/dotfiles
+cd ~/dotfiles
 
-`mkdir -p ~/.config/alacritty
+2. Install Configurations
+
+Window Manager & Terminal
+Bash
+
+# Niri
+mkdir -p ~/.config/niri
+cp niri/config.kdl ~/.config/niri/
+
+# Alacritty
+mkdir -p ~/.config/alacritty
 cp alacritty/alacritty.toml ~/.config/alacritty/
-cp alacritty/dank-theme.toml ~/.config/alacritty/`
+cp alacritty/dank-theme.toml ~/.config/alacritty/
 
-Scripts
-`mkdir -p ~/.local/bin
+# Swaylock
+mkdir -p ~/.config/swaylock
+cp swaylock/config ~/.config/swaylock/
+
+Utilities (Mako, Fastfetch, Scripts)
+Bash
+
+# Mako
+mkdir -p ~/.config/mako
+cp mako/mako.config ~/.config/mako/
+
+# Fastfetch
+mkdir -p ~/.config/fastfetch
+cp fastfetch/config.jsonc ~/.config/fastfetch/
+
+# Scripts
+mkdir -p ~/.local/bin
 cp bin/* ~/.local/bin/
-chmod +x ~/.local/bin/*`
+chmod +x ~/.local/bin/*
 
-Fastfetch
-`mkdir -p ~/.config/fastfetch
-cp fastfetch/config.jsonc ~/.config/fastfetch/`
+Shell (Zsh)
+Bash
 
-Mako
-`mkdir -p ~/.config/mako
-cp mako/mako.config ~/.config/mako/`
+cp .zshrc ~/
+chsh -s /bin/zsh
 
+🎵 Music Setup (MPD & MPC)
 
-MPD & MPC
-Create MPD directory:
+Setup
+Bash
 
-`mkdir -p ~/.config/mpd
-cp mpd/mpd.conf ~/.config/mpd/`
+# Create directories
+mkdir -p ~/.config/mpd
+mkdir -p ~/.local/share/mpd/{playlists,db,log}
 
-Create required dirs:
+# Copy config
+cp mpd/mpd.conf ~/.config/mpd/
 
-`mkdir -p ~/.local/share/mpd/{playlists,db,log}`
+# Start MPD
+mpd ~/.config/mpd/mpd.conf
 
-Start MPD:
+Usage
+Bash
 
-`mpd ~/.config/mpd/mpd.conf`
-
-
-Control music with MPC:
-
-`mpc update        # scan library
+mpc update        # scan library
 mpc add <path>    # add music
 mpc play
 mpc pause
-mpc next`
+mpc next
 
-Included in scripts for fuzzel integration
-
-Niri
-
-`mkdir -p ~/.config/niri
-cp niri/config.kdl ~/.config/niri/`
-
-Swaylock
-
-`mkdir -p ~/.config/swaylock
-cp swaylock/config ~/.config/swaylock/`
-
-Zsh
-
-`cp .zshrc ~/`
-`source ~/.zshrc`
-
-Set Zsh as default shell:
-
-`chsh -s /bin/zsh`
-
+Note: Scripts for Fuzzel integration are included in the bin folder.
