@@ -1,0 +1,53 @@
+--- config.def.h
++++ config.def.h
+@@ -30,7 +37,8 @@ char *scroll = NULL;
+ char *stty_args = "stty raw pass8 nl -echo -iexten -cstopb 38400";
+ 
+ /* identification sequence returned in DA and DECID */
+-char *vtiden = "\033[?6c";
++/* By default, use the same one as kitty. */
++char *vtiden = "\033[?62c";
+ 
+ /* Kerning / character bounding-box multipliers */
+ static float cwscale = 1.0;
+@@ -199,12 +229,18 @@ static unsigned int defaultattr = 11;
+  */
+ static uint forcemousemod = ShiftMask;
+ 
++/* Internal keyboard shortcuts. */
++#define MODKEY Mod1Mask
++#define TERMMOD (ControlMask|ShiftMask)
++
+ /*
+  * Internal mouse shortcuts.
+  * Beware that overloading Button1 will disable the selection.
+  */
+ static MouseShortcut mshortcuts[] = {
+ 	/* mask                 button   function        argument       release */
++	{ TERMMOD,              Button3, previewimage,   {.s = "feh"} },
++	{ TERMMOD,              Button2, showimageinfo,  {},            1 },
+ 	{ XK_ANY_MOD,           Button2, selpaste,       {.i = 0},      1 },
+ 	{ ShiftMask,            Button4, ttysend,        {.s = "\033[5;2~"} },
+ 	{ XK_ANY_MOD,           Button4, ttysend,        {.s = "\031"} },
+@@ -212,10 +248,6 @@ static MouseShortcut mshortcuts[] = {
+ 	{ XK_ANY_MOD,           Button5, ttysend,        {.s = "\005"} },
+ };
+ 
+-/* Internal keyboard shortcuts. */
+-#define MODKEY Mod1Mask
+-#define TERMMOD (ControlMask|ShiftMask)
+-
+ static Shortcut shortcuts[] = {
+ 	/* mask                 keysym          function        argument */
+ 	{ XK_ANY_MOD,           XK_Break,       sendbreak,      {.i =  0} },
+@@ -230,6 +262,10 @@ static Shortcut shortcuts[] = {
+ 	{ TERMMOD,              XK_Y,           selpaste,       {.i =  0} },
+ 	{ ShiftMask,            XK_Insert,      selpaste,       {.i =  0} },
+ 	{ TERMMOD,              XK_Num_Lock,    numlock,        {.i =  0} },
++	{ TERMMOD,              XK_F1,          togglegrdebug,  {.i =  0} },
++	{ TERMMOD,              XK_F6,          dumpgrstate,    {.i =  0} },
++	{ TERMMOD,              XK_F7,          unloadimages,   {.i =  0} },
++	{ TERMMOD,              XK_F8,          toggleimages,   {.i =  0} },
+ };
+ 
+ /*

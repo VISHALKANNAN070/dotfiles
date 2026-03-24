@@ -1,0 +1,65 @@
+# ───────────────────────────────────────────────
+#  GRAPHITE MINIMAL THEME (Vishal)
+# ───────────────────────────────────────────────
+
+[colors.primary]
+background = "#232427"
+foreground = "#e5e5e5"
+
+[colors.selection]
+text = "#e5e5e5"
+background = "#3a3c3f"
+
+[colors.cursor]
+text = "#232427"
+cursor = "#d0ced5"
+
+# Muted, soft ANSI color palette
+[colors.normal]
+black   = "#1c1d1f"
+red     = "#c26d70"
+green   = "#8aa18a"
+yellow  = "#c7b185"
+blue    = "#8aa0c2"
+magenta = "#a58ab3"
+cyan    = "#8ab3b3"
+white   = "#d0d0d0"
+
+[colors.bright]
+black   = "#3a3c3f"
+red     = "#d77c7f"
+green   = "#9bb89b"
+yellow  = "#d4c29b"
+blue    = "#9db6d6"
+magenta = "#bba5c8"
+cyan    = "#9acccc"
+white   = "#ececec"
+
+
+# ───────────────────────────────────────────────
+#  FONT (Noto Sans Mono)
+# ───────────────────────────────────────────────
+
+[font.normal]
+family = "Noto Sans Mono"
+style = "Regular"
+
+[font.bold]
+family = "Noto Sans Mono"
+style = "Bold"
+
+[font.italic]
+family = "Noto Sans Mono"
+style = "Italic"
+
+[font]
+size = 12
+
+
+# ───────────────────────────────────────────────
+#  WINDOW PADDING
+# ───────────────────────────────────────────────
+
+[window.padding]
+x = 12
+y = 12

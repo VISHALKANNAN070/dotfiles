@@ -1,0 +1,2 @@
+#!/bin/sh
+while wl-paste -t text --watch cliphist store; do :; done

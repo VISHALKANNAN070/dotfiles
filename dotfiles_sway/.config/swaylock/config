@@ -1,0 +1,28 @@
+# --- Appearance ---
+color=010203
+scaling=fill
+
+# --- Sizing ---
+indicator-radius=120
+indicator-thickness=20
+
+# --- Idle ---
+ring-color=333333
+inside-color=000000
+line-color=000000
+separator-color=000000
+
+text-color=e6e6e6
+key-hl-color=666666
+bs-hl-color=777777
+
+# --- Verifying ---
+ring-ver-color=666666
+text-ver-color=e6e6e6
+inside-ver-color=000000
+
+# --- Wrong ---
+ring-wrong-color=ff0000
+text-wrong-color=ffffff
+inside-wrong-color=000000
+

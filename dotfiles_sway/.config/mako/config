@@ -1,0 +1,16 @@
+background-color=#000000ff
+text-color=#e6e6e6ff
+border-color=#333333ff
+progress-color=over #666666ff
+
+border-size=2
+border-radius=2
+default-timeout=5000
+font=NotoMonoNerdFont 10
+padding=10
+margin=10
+width=300
+
+[urgency=high]
+border-color=#ff0000ff
+

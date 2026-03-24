@@ -1,0 +1,15 @@
+[opener]
+image = [
+    { run = 'feh "$@"', orphan = true }
+]
+
+edit = [
+    { run = 'nvim "$@"', block = true }
+]
+
+[open]
+rules = [
+    { mime = "image/*", use = "image" },
+    { mime = "text/*", use = "edit" },
+    { name = "*", use = "edit" }
+]

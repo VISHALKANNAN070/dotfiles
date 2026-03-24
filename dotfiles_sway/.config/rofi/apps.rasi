@@ -1,0 +1,46 @@
+@import "~/.cache/wal/colors-rofi-dark.rasi"
+
+configuration {
+    show-icons: false;
+    font: "NotoMono Nerd Font 10";
+    drun-display-format: "{name}";
+    disable-history: false;
+}
+
+window {
+    location: south;
+    anchor: south;
+    width: 100%;
+    children: [ mainbox ];
+}
+
+mainbox {
+    orientation: horizontal;
+    children: [ inputbar, listview ];
+}
+
+inputbar {
+    width: 20%;     
+    children: [ prompt, entry ];
+}
+
+prompt {
+    padding: 2px 5px;
+}
+
+entry {
+    expand: true;
+    padding: 2px;
+}
+
+listview {
+    layout: horizontal;
+    lines: 100;      
+    spacing: 10px;
+}
+
+element {
+    padding: 2px 8px;
+}
+
+
