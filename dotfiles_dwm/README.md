@@ -1,3 +1,0 @@
-# dotfiles
-
-Minimalist monochrome environment.

@@ -1,0 +1,91 @@
+* {
+    bg:         #1a1a1a;
+    bg-alt:     #222222;
+    fg:         #c0c0c0;
+    fg-dim:     #707070;
+    border:     #2a2a2a;
+    selected:   #353535;
+    urgent:     #c06060;
+    background-color: transparent;
+    text-color: @fg;
+    border: 0px;
+    margin: 0px;
+    padding: 0px;
+    spacing: 0px;
+}
+
+configuration {
+    show-icons: false;
+    font: "monospace 11";
+    drun-display-format: "{name}";
+    disable-history: false;
+}
+
+window {
+    location: center;
+    anchor: center;
+    width: 220px;
+    background-color: @bg;
+    border: 1px solid;
+    border-color: @border;
+    border-radius: 0px;
+    children: [ mainbox ];
+}
+
+mainbox {
+    orientation: vertical;
+    background-color: transparent;
+    padding: 6px;
+    children: [ listview ];
+    spacing: 0px;
+}
+
+listview {
+    layout: vertical;
+    lines: 4;
+    fixed-columns: true;
+    scrollbar: false;
+    background-color: transparent;
+    padding: 0px;
+    spacing: 2px;
+}
+
+element {
+    orientation: vertical;
+    background-color: transparent;
+    border-radius: 0px;
+    padding: 0px;
+    cursor: pointer;
+    expand: true;
+}
+
+element normal.normal,
+element alternate.normal {
+    background-color: transparent;
+    text-color: @fg;
+}
+
+element selected.normal {
+    background-color: @selected;
+    text-color: #f0f0f0;
+}
+
+element normal.urgent,
+element alternate.urgent {
+    background-color: transparent;
+    text-color: @urgent;
+}
+
+element selected.urgent {
+    background-color: #402020;
+    text-color: #ff9090;
+}
+
+element-text {
+    background-color: transparent;
+    text-color: inherit;
+    padding: 10px 12px;
+    vertical-align: 0.5;
+    horizontal-align: 0.5;
+    cursor: inherit;
+}

@@ -1,0 +1,39 @@
+* {
+  border: none;
+  border-radius: 0;
+  font-family:monospace;
+  font-size: 12px;
+  min-height: 0;
+}
+
+window#waybar {
+  background: transparent;
+  color: #c0c0c0;
+}
+
+window#waybar > box {
+  background: #1a1a1a;
+  border-bottom: 1px solid #2a2a2a;
+}
+
+#workspaces button {
+  color: #555555;
+  background: transparent;
+  padding: 0 8px;
+  min-height: 32px;
+}
+
+#workspaces button.focused {
+  color: #e0e0e0;
+}
+
+#network,
+#battery,
+#clock {
+  color: #888888;
+  padding: 0 10px;
+}
+
+#battery.warning { color: #c0a060; }
+#battery.critical { color: #c06060; }
+#battery.charging { color: #60a0c0; }
